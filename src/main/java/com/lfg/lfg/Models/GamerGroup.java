@@ -13,18 +13,16 @@ public class Group {
 
     @OneToMany
     List<Game> games;
-    @OneToMany
-    List<User> members;
+    @OneToMany(fetch= FetchType.LAZY,mappedBy = "gamergroup")
+    List<User> users;
+
     private String intro;
     private String playStyle;
     private String size;
     private String discordChannel;
     @Column(nullable=false)
     private String groupName;
-    @OneToOne
-    private User owner;
-    @ManyToOne
-    private User user;
+
 
 
  public Integer getId() {
@@ -43,13 +41,7 @@ public class Group {
   this.games = games;
  }
 
- public List<User> getMembers() {
-  return members;
- }
 
- public void setMembers(List<User> members) {
-  this.members = members;
- }
 
  public String getIntro() {
   return intro;
@@ -91,19 +83,13 @@ public class Group {
   this.groupName = groupName;
  }
 
- public User getUser() {
-  return user;
+
+
+ public List<User> getUsers() {
+  return users;
  }
 
- public void setUser(User user) {
-  this.user = user;
- }
-
- public User getOwner() {
-  return owner;
- }
-
- public void setOwner(User owner) {
-  this.owner = owner;
+ public void setUsers(List<User> users) {
+  this.users = users;
  }
 }
