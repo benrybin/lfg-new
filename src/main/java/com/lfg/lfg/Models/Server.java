@@ -7,8 +7,7 @@ public class Server {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne
-    private Game game;
+
 
     public Integer getId() {
         return id;
@@ -18,11 +17,5 @@ public class Server {
         this.id = id;
     }
 
-    public Game getGame() {
-        return game;
-    }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
 }

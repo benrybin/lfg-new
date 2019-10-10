@@ -1,27 +1,26 @@
 package com.lfg.lfg.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="gamergroup")
-public class Group {
+
+public class GamerGroup {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @OneToMany
-    List<Game> games;
-    @OneToMany(fetch= FetchType.LAZY,mappedBy = "gamergroup")
-    List<User> users;
-
     private String intro;
     private String playStyle;
     private String size;
     private String discordChannel;
     @Column(nullable=false)
     private String groupName;
+ @ManyToMany(mappedBy = "groups")
+ @JsonIgnoreProperties("groups")
+    List<User> users;
 
 
 
@@ -32,15 +31,6 @@ public class Group {
  public void setId(Integer id) {
   this.id = id;
  }
-
- public List<Game> getGames() {
-  return games;
- }
-
- public void setGames(List<Game> games) {
-  this.games = games;
- }
-
 
 
  public String getIntro() {
@@ -82,7 +72,6 @@ public class Group {
  public void setGroupName(String groupName) {
   this.groupName = groupName;
  }
-
 
 
  public List<User> getUsers() {

@@ -1,7 +1,9 @@
 package com.lfg.lfg.Models;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Game {
@@ -11,11 +13,9 @@ public class Game {
     private String name;
     private Integer hours;
     private String playStyle;
-    @OneToMany
-    private List<Server> servers;
+
     private String specialSkills;
-    @ManyToOne
-    private Group group;
+
 
     public Integer getId() {
         return id;
@@ -49,13 +49,7 @@ public class Game {
         this.playStyle = playStyle;
     }
 
-    public List<Server> getServers() {
-        return servers;
-    }
 
-    public void setServers(List<Server> servers) {
-        this.servers = servers;
-    }
 
     public String getSpecialSkills() {
         return specialSkills;
@@ -65,11 +59,5 @@ public class Game {
         this.specialSkills = specialSkills;
     }
 
-    public Group getGroup() {
-        return group;
-    }
 
-    public void setGroup(Group group) {
-        this.group = group;
-    }
 }

@@ -1,5 +1,7 @@
 package com.lfg.lfg.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -10,11 +12,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @OneToMany
-    private List<Game> games;
-    @OneToMany
-    private List<Group> groups;
     @Size(min = 8, message = "Minimum password length: 8 characters")
     @Column(nullable=false)
     private String pw;
@@ -27,10 +24,18 @@ public class User {
     private String intro;
     private String timeZone;
     private String region;
-    private String lanuage;
+    private String language;
     private Boolean mic;
     private String discordName;
     private String steamName;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "user_gamergroup",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name="gamer_group_id"))
+    @JsonIgnoreProperties("users")
+    List<GamerGroup> groups;
+
+
 
     public User(String userName,String pw,String emailAddress) {
         this.pw = pw;
@@ -52,21 +57,7 @@ public class User {
         this.id = id;
     }
 
-    public List<Game> getGames() {
-        return games;
-    }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
-    }
-
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
 
     public String getPw() {
         return pw;
@@ -132,13 +123,7 @@ public class User {
         this.region = region;
     }
 
-    public String getLanuage() {
-        return lanuage;
-    }
 
-    public void setLanuage(String lanuage) {
-        this.lanuage = lanuage;
-    }
 
     public Boolean getMic() {
         return mic;
@@ -162,5 +147,22 @@ public class User {
 
     public void setSteamName(String steamName) {
         this.steamName = steamName;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+
+    public List<GamerGroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<GamerGroup> groups) {
+        this.groups = groups;
     }
 }
