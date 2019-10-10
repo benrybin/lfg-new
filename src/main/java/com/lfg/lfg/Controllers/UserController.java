@@ -19,8 +19,8 @@ public class UserController {
     }
     @RequestMapping(path="users/verify")
     public User verifyUser(@RequestBody User user){
-        System.out.println(user.getPw());
-       return userService.signIn(user.getUserName(),user.getPw());
+
+       return userService.signIn(user);
     }
 
 

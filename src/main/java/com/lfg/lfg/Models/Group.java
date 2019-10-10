@@ -19,7 +19,10 @@ public class Group {
     private String playStyle;
     private String size;
     private String discordChannel;
+    @Column(nullable=false)
     private String groupName;
+    @OneToOne
+    private User owner;
     @ManyToOne
     private User user;
 
@@ -94,5 +97,13 @@ public class Group {
 
  public void setUser(User user) {
   this.user = user;
+ }
+
+ public User getOwner() {
+  return owner;
+ }
+
+ public void setOwner(User owner) {
+  this.owner = owner;
  }
 }

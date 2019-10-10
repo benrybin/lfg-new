@@ -23,13 +23,16 @@ public class UserService {
     }
     public User signIn(User user){
        User temp =  userRepo.findByuserName(user.getUserName());
-       System.out.println();
-       if(temp.getUserName()== null ){
+
+
+       if(passwordEncoder.matches(user.getPw(),temp.getPw())) {
            return temp;
+
        }else{
            System.out.println("User not found");
            return new User();
        }
+
     }
     public String signUp(String userName,String password,String emailAddress){
         if(userRepo.existsByuserName(userName)){
