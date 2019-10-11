@@ -21,7 +21,9 @@ public class GamerGroup {
  @ManyToMany(mappedBy = "groups")
  @JsonIgnoreProperties("groups")
     List<User> users;
-
+ @ManyToMany(mappedBy = "gamerGroups")
+ @JsonIgnoreProperties("gamerGroups")
+ List<Game> games;
 
 
  public Integer getId() {
@@ -80,5 +82,13 @@ public class GamerGroup {
 
  public void setUsers(List<User> users) {
   this.users = users;
+ }
+
+ public List<Game> getGames() {
+  return games;
+ }
+
+ public void setGames(List<Game> games) {
+  this.games = games;
  }
 }

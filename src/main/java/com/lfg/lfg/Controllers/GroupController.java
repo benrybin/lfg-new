@@ -2,6 +2,7 @@ package com.lfg.lfg.Controllers;
 
 import com.lfg.lfg.Models.GamerGroup;
 import com.lfg.lfg.Models.User;
+import com.lfg.lfg.Services.GameService;
 import com.lfg.lfg.Services.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import java.util.List;
 public class GroupController {
     @Autowired
     private GroupService groupService;
+    @Autowired
+    private GameService gameService;
 
     @PostMapping(path="groups/add")
     public String addnewGroup(@RequestBody GamerGroup gamerGroup){
@@ -29,6 +32,17 @@ public class GroupController {
        groupService.addUsertoGroup(userName,groupName);
 
        return "Yes";
+
+
+
+    }
+    @RequestMapping("group/addgame")
+    public String addGametoGroup(@RequestParam String game,@RequestParam String groupName){
+        System.out.println(game);
+        System.out.println(groupName);
+        gameService.addGametoGroup(game,groupName);
+
+        return "Yes";
 
 
 

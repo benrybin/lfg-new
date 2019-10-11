@@ -30,8 +30,7 @@ public class GroupService {
     public Boolean addUsertoGroup(String userName,String groupName){
         User tempUser = userRepo.findByuserName(userName);
         GamerGroup tempGamerGroup = groupRepo.findBygroupName(groupName);
-        System.out.println(tempUser.getUserName());
-        System.out.println(tempGamerGroup.getGroupName());
+
         tempGamerGroup.getUsers().add(tempUser);
         tempUser.getGroups().add(tempGamerGroup);
         userRepo.save(tempUser);

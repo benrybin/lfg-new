@@ -1,9 +1,9 @@
 package com.lfg.lfg.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Game {
@@ -15,7 +15,21 @@ public class Game {
     private String playStyle;
 
     private String specialSkills;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "game_gamergroup",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name="gamer_group_id"))
+    @JsonIgnoreProperties("games")
+    List<GamerGroup> gamerGroups;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "game_user",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name="user_id"))
+    @JsonIgnoreProperties("games")
+    List<User> users;
+    @OneToMany(mappedBy = "game")
+    List<Server> servers;
 
     public Integer getId() {
         return id;
@@ -60,4 +74,19 @@ public class Game {
     }
 
 
+    public List<GamerGroup> getGamerGroups() {
+        return gamerGroups;
+    }
+
+    public void setGamerGroups(List<GamerGroup> gamerGroups) {
+        this.gamerGroups = gamerGroups;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }

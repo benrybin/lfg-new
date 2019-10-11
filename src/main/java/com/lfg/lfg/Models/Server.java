@@ -8,6 +8,9 @@ public class Server {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @ManyToOne
+    private Game game;
+
 
     public Integer getId() {
         return id;
