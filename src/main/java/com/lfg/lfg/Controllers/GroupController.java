@@ -1,5 +1,6 @@
 package com.lfg.lfg.Controllers;
 
+import com.lfg.lfg.Models.Game;
 import com.lfg.lfg.Models.GamerGroup;
 import com.lfg.lfg.Models.User;
 import com.lfg.lfg.Services.GameService;
@@ -45,6 +46,11 @@ public class GroupController {
         return "Yes";
 
 
+
+    }
+    @RequestMapping("group/getgames")
+    public List<Game> getGamesFromGroup(String groupName){
+        return groupService.getGames(groupName);
 
     }
     @RequestMapping(path="group/getusers")

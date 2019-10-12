@@ -1,5 +1,6 @@
 package com.lfg.lfg.Services;
 
+import com.lfg.lfg.Models.Game;
 import com.lfg.lfg.Models.GamerGroup;
 import com.lfg.lfg.Models.User;
 import com.lfg.lfg.Repos.GroupRepo;
@@ -40,5 +41,8 @@ public class GroupService {
     public List<User> getUsers(String groupName){
         return groupRepo.findBygroupName(groupName).getUsers();
 
+    }
+    public List<Game> getGames(String groupName){
+        return groupRepo.findBygroupName(groupName).getGames();
     }
 }
