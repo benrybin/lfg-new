@@ -9,6 +9,8 @@ import com.lfg.lfg.Repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GameService {
     @Autowired
@@ -44,5 +46,8 @@ public class GameService {
         gameRepo.save(tempGame);
         userRepo.save(tempUser);
         return true;
+    }
+    public List<Game> allGames(){
+        return gameRepo.findAllGames();
     }
 }

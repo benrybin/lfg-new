@@ -3,10 +3,9 @@ package com.lfg.lfg.Controllers;
 import com.lfg.lfg.Models.Game;
 import com.lfg.lfg.Services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -22,5 +21,9 @@ public class GameController {
         } else {
             return "Game add failed";
         }
+    }
+    @RequestMapping(path="game/all")
+    public List<Game> allGames(){
+        return gameService.allGames();
     }
 }

@@ -1,6 +1,6 @@
 package com.lfg.lfg.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,22 +13,27 @@ public class Game {
     private String name;
     private Integer hours;
     private String playStyle;
+    private String banner;
 
     private String specialSkills;
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "game_gamergroup",
             joinColumns = @JoinColumn(name = "game_id"),
             inverseJoinColumns = @JoinColumn(name="gamer_group_id"))
-    @JsonIgnoreProperties("games")
+    //@JsonIgnoreProperties("games")
+    @JsonIgnore
     List<GamerGroup> gamerGroups;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "game_user",
             joinColumns = @JoinColumn(name = "game_id"),
             inverseJoinColumns = @JoinColumn(name="user_id"))
-    @JsonIgnoreProperties("games")
+    //@JsonIgnoreProperties("games")
+    @JsonIgnore
     List<User> users;
-    @OneToMany(mappedBy = "game")
+    @OneToMany(mappedBy = "game",fetch = FetchType.LAZY)
+    //@JsonIgnoreProperties("game")
+    @JsonIgnore
     List<Server> servers;
 
     public Integer getId() {
@@ -88,5 +93,21 @@ public class Game {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+    public List<Server> getServers() {
+        return servers;
+    }
+
+    public void setServers(List<Server> servers) {
+        this.servers = servers;
     }
 }
