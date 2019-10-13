@@ -17,10 +17,15 @@ public class GamerGroupGame {
     @JoinColumn(name="gamegroup_id")
     private GamerGroup gamerGroup;
     private String playstyle;
+    private String gameTitle;
 
-    public GamerGroupGame(Game games, GamerGroup gamerGroup) {
+    public GamerGroupGame(Game games, GamerGroup gamerGroup,String gameTitle) {
         this.games = games;
         this.gamerGroup = gamerGroup;
+        this.gameTitle = gameTitle;
+    }
+
+    public GamerGroupGame() {
     }
 
     public String getPlaystyle() {
@@ -29,5 +34,37 @@ public class GamerGroupGame {
 
     public void setPlaystyle(String playstyle) {
         this.playstyle = playstyle;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Game getGames() {
+        return games;
+    }
+
+    public void setGames(Game games) {
+        this.games = games;
+    }
+
+    public GamerGroup getGamerGroup() {
+        return gamerGroup;
+    }
+
+    public void setGamerGroup(GamerGroup gamerGroup) {
+        this.gamerGroup = gamerGroup;
+    }
+
+    public String getGameTitle() {
+        return gameTitle;
+    }
+
+    public void setGameTitle(String gameTitle) {
+        this.gameTitle = gameTitle;
     }
 }

@@ -24,7 +24,7 @@ public class GamerGroupGameService {
         if(groupRepo.existsBygroupName(gamerGroupName)&& gameRepo.existsByTitle(gameTitle)){
              Game game = gameRepo.findByTitle(gameTitle);
              GamerGroup gamerGroup = groupRepo.findBygroupName(gamerGroupName);
-            GamerGroupGame savedGame = new GamerGroupGame(game,gamerGroup);
+            GamerGroupGame savedGame = new GamerGroupGame(game,gamerGroup,game.getTitle());
             gamerGroupGameRepo.save(savedGame);
             return true;
         }
@@ -32,5 +32,8 @@ public class GamerGroupGameService {
         return false;
 
 
+    }
+    public GamerGroupGame findGamerGroupGame(String gameTitle){
+        return gamerGroupGameRepo.findByGameTitle(gameTitle);
     }
 }
