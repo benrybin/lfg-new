@@ -7,4 +7,5 @@ public interface GamerGroupGameRepo extends JpaRepository<GamerGroupGame,Integer
 
 
     GamerGroupGame findByGameTitle(String gameTitle);
+    boolean existsByGameTitle(String gameTitle);
 }

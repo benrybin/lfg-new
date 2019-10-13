@@ -21,7 +21,7 @@ public class GamerGroupGameService {
 
     public Boolean saveGamerGroupGame(String gamerGroupName, String gameTitle){
 
-        if(groupRepo.existsBygroupName(gamerGroupName)&& gameRepo.existsByTitle(gameTitle)){
+        if(!gamerGroupGameRepo.existsByGameTitle(gameTitle)){
              Game game = gameRepo.findByTitle(gameTitle);
              GamerGroup gamerGroup = groupRepo.findBygroupName(gamerGroupName);
             GamerGroupGame savedGame = new GamerGroupGame(game,gamerGroup,game.getTitle());
