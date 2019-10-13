@@ -3,9 +3,10 @@ package com.lfg.lfg.Controllers;
 import com.lfg.lfg.Models.Game;
 import com.lfg.lfg.Services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
@@ -14,16 +15,19 @@ public class GameController {
     private GameService gameService;
 
     @PostMapping(path="game/add")
-    public String addnewGame(@RequestBody Game newGame) {
+    public String addnewGame(@RequestBody Game game){
+        if(gameService.checkIfGameExists(game.getTitle())){
+            return "Game already added";
 
-        if (gameService.saveGame(newGame)) {
+        }
+        if(gameService.saveGame(game)){
             return "Game created Succesfully";
-        } else {
+        }else{
             return "Game add failed";
         }
+
     }
-    @RequestMapping(path="game/all")
-    public List<Game> allGames(){
-        return gameService.allGames();
-    }
+
+
+
 }

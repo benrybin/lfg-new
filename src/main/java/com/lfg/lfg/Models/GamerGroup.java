@@ -18,12 +18,12 @@ public class GamerGroup {
     private String discordChannel;
     @Column(nullable=false)
     private String groupName;
- @ManyToMany(mappedBy = "groups")
- @JsonIgnoreProperties("groups")
-    List<User> users;
- @ManyToMany(mappedBy = "gamerGroups")
- @JsonIgnoreProperties("gamerGroups")
- List<Game> games;
+    @OneToMany(mappedBy = "gamerGroup", cascade = CascadeType.ALL)
+    private List<GamerGroupGame> nothing;
+    @ManyToMany(mappedBy = "groups")
+    @JsonIgnoreProperties("groups")
+    private List<User> users;
+
 
 
  public Integer getId() {
@@ -82,13 +82,5 @@ public class GamerGroup {
 
  public void setUsers(List<User> users) {
   this.users = users;
- }
-
- public List<Game> getGames() {
-  return games;
- }
-
- public void setGames(List<Game> games) {
-  this.games = games;
  }
 }

@@ -34,9 +34,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name="gamer_group_id"))
     @JsonIgnoreProperties("users")
     List<GamerGroup> groups;
-    @ManyToMany(mappedBy = "users")
-    @JsonIgnoreProperties("users")
-    List<Game> games;
+
 
 
     public User(String userName,String pw,String emailAddress) {
@@ -166,13 +164,5 @@ public class User {
 
     public void setGroups(List<GamerGroup> groups) {
         this.groups = groups;
-    }
-
-    public List<Game> getGames() {
-        return games;
-    }
-
-    public void setGames(List<Game> games) {
-        this.games = games;
     }
 }

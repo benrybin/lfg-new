@@ -25,17 +25,7 @@ public class UserController {
 
        return userService.signIn(user);
     }
-    @RequestMapping("user/addgame")
-    public String addGametoUser(@RequestParam String game,@RequestParam String userName){
 
-
-        gameService.addGametoUser(game,userName);
-
-        return "Yes";
-
-
-
-    }
 
 
 
