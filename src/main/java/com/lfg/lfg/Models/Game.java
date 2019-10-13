@@ -13,8 +13,9 @@ public class Game {
     private String genre;
     private String banner;
     @OneToMany(mappedBy = "games", cascade = CascadeType.ALL)
-    private List<GamerGroupGame> userGames;
-
+    private List<GamerGroupGame> groupGames;
+    @OneToMany(mappedBy = "gamesUser", cascade = CascadeType.ALL)
+    private List<UserGame> userGames;
 
     public Integer getId() {
         return id;
