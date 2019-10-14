@@ -18,11 +18,13 @@ public class GamerGroupGame {
     private GamerGroup gamerGroup;
     private String playstyle;
     private String gameTitle;
+    private Integer groupIdtemp;
 
-    public GamerGroupGame(Game games, GamerGroup gamerGroup,String gameTitle) {
+    public GamerGroupGame(Game games, GamerGroup gamerGroup,String gameTitle,Integer groupId) {
         this.games = games;
         this.gamerGroup = gamerGroup;
         this.gameTitle = gameTitle;
+        this.groupIdtemp = groupId;
     }
 
     public GamerGroupGame() {
@@ -66,5 +68,14 @@ public class GamerGroupGame {
 
     public void setGameTitle(String gameTitle) {
         this.gameTitle = gameTitle;
+    }
+
+
+    public Integer getGroupIdtemp() {
+        return groupIdtemp;
+    }
+
+    public void setGroupIdtemp(Integer groupIdtemp) {
+        this.groupIdtemp = groupIdtemp;
     }
 }

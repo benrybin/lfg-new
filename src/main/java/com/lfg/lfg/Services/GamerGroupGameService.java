@@ -20,11 +20,11 @@ public class GamerGroupGameService {
 
 
     public Boolean saveGamerGroupGame(String gamerGroupName, String gameTitle){
+        Game game = gameRepo.findByTitle(gameTitle);
+        GamerGroup gamerGroup = groupRepo.findBygroupName(gamerGroupName);
+        if(!gamerGroupGameRepo.existsByGameTitleandgroupId(gameTitle,gamerGroup.getId())){
 
-        if(!gamerGroupGameRepo.existsByGameTitle(gameTitle)){
-             Game game = gameRepo.findByTitle(gameTitle);
-             GamerGroup gamerGroup = groupRepo.findBygroupName(gamerGroupName);
-            GamerGroupGame savedGame = new GamerGroupGame(game,gamerGroup,game.getTitle());
+            GamerGroupGame savedGame = new GamerGroupGame(game,gamerGroup,game.getTitle(),gamerGroup.getId());
             gamerGroupGameRepo.save(savedGame);
             return true;
         }
@@ -33,7 +33,8 @@ public class GamerGroupGameService {
 
 
     }
-    public GamerGroupGame findGamerGroupGame(String gameTitle){
-        return gamerGroupGameRepo.findByGameTitle(gameTitle);
+    public GamerGroupGame findGamerGroupGame(String gameTitle,String groupName){
+        Integer groupId = groupRepo.findBygroupName(groupName).getId();
+        return gamerGroupGameRepo.findByGameTitleandgroupId(gameTitle,groupId);
     }
 }

@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class GameGroupGameController {
     @Autowired
     GamerGroupGameService gamerGroupGameService;
-
+    // Change to post instead of Get
     @RequestMapping("group/addgroupgame")
     public String saveGamerGroupGame(@RequestParam String gamerGroupName,@RequestParam  String gameTitle){
         gamerGroupGameService.saveGamerGroupGame(gamerGroupName,gameTitle);
         return "Yes";
     }
     @RequestMapping("group/getgames")
-    public GamerGroupGame findGamesbyGroup(@RequestParam String gameTitle){
-        return gamerGroupGameService.findGamerGroupGame(gameTitle);
+    public GamerGroupGame findGamesbyGroup(@RequestParam String gameTitle,@RequestParam String groupName){
+        return gamerGroupGameService.findGamerGroupGame(gameTitle,groupName);
     }
 
 }

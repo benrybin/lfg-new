@@ -10,6 +10,7 @@ public class UserGame {
     private String playstyle;
     private String gameTitle;
     private Integer hours;
+    private Integer tempuserId;
 
     @ManyToOne
     @JoinColumn(name="game_id")
@@ -71,5 +72,14 @@ public class UserGame {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+
+    public Integer getTempuserId() {
+        return tempuserId;
+    }
+
+    public void setTempuserId(Integer tempuserId) {
+        this.tempuserId = tempuserId;
     }
 }
