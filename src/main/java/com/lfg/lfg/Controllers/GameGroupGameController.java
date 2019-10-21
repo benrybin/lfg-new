@@ -1,6 +1,5 @@
 package com.lfg.lfg.Controllers;
 
-import com.lfg.lfg.Models.GamerGroupGame;
 import com.lfg.lfg.Services.GamerGroupGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,9 +18,9 @@ public class GameGroupGameController {
         gamerGroupGameService.saveGamerGroupGame(gamerGroupName,gameTitle);
         return "Yes";
     }
-    @RequestMapping("group/getgames")
-    public GamerGroupGame findGamesbyGroup(@RequestParam String gameTitle,@RequestParam String groupName){
-        return gamerGroupGameService.findGamerGroupGame(gameTitle,groupName);
-    }
+    //@RequestMapping("group/getgames")
+    //public GamerGroupGame findGamesbyGroup(@RequestParam String gameTitle,@RequestParam String groupName){
+      //  return gamerGroupGameService.findGamerGroupGame(gameTitle,groupName);
+   // }
 
 }
